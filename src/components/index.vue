@@ -21,12 +21,6 @@
               :options="spatailDataTypes"
               placeholder="Choose data type"
             ></myselect>
-            <br>
-
-            <map :zoom="zoom" :center="center">
-              <tilelayer :url="url"></tilelayer>
-              <marker :position="center"></marker>
-            </map>
           </quasar-step>
           
           <quasar-step title="Tell us about your data" :ready="isStep3Ready" class="on-left">
@@ -84,16 +78,9 @@ import axios from 'axios'
 // import myselect from 'myselect'
 import myselect from './myselect.vue'
 
-import map from 'vue-leaflet'
-// import tilelayer from 'vue-leaflet'
-// import marker from 'vue-leaflet'
-
 export default {
   components: {
-    'myselect': myselect,
-    map
-    // tilelayer,
-    // marker
+    'myselect': myselect
   },
   beforeMount () {
     axios.get('http://139.59.248.255/0.1/get_capabilities').then((response) => {
@@ -103,11 +90,6 @@ export default {
   },
   data () {
     return {
-      title: 'Vue Leaflet Demo',
-      zoom: 13,
-      center: [51.505, -0.09],
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-
       capabilities: null,
 
       quasarVersion: Quasar.version,
